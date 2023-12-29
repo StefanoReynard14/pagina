@@ -14,17 +14,19 @@ function obtenerProductosDisponibles(presupuestoDisponible) {
   return productosDisponibles;
 }
 
-let presupuestoUsuario = prompt("Ingresa tu presupuesto disponible:");
-let presupuestoDisponible = parseFloat(presupuestoUsuario);
+function obtenerPresupuesto() {
+  let presupuestoUsuario = document.getElementById("presupuestoInput").value;
+  let presupuestoDisponible = parseFloat(presupuestoUsuario);
 
-if (!isNaN(presupuestoDisponible)) {
-  let productosDisponibles = obtenerProductosDisponibles(presupuestoDisponible);
+  if (!isNaN(presupuestoDisponible)) {
+    let productosDisponibles = obtenerProductosDisponibles(presupuestoDisponible);
 
-  if (productosDisponibles.length > 0) {
-    alert(`Los productos disponibles dentro de tu presupuesto son: ${productosDisponibles.join(", ")}`);
+    if (productosDisponibles.length > 0) {
+      document.getElementById("resultados").innerHTML = `Los productos disponibles dentro de tu presupuesto son: ${productosDisponibles.join(", ")}`;
+    } else {
+      document.getElementById("resultados").innerHTML = "Lo siento, no hay productos disponibles dentro de tu presupuesto.";
+    }
   } else {
-    alert("Lo siento, no hay productos disponibles dentro de tu presupuesto.");
+    document.getElementById("resultados").innerHTML = "Por favor, ingresa un presupuesto válido.";
   }
-} else {
-  alert("Por favor, ingresa un presupuesto válido.");
 }
